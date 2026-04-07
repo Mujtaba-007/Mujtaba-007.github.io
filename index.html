@@ -583,13 +583,16 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.08 });
   revEls.forEach(function(el) { revObs.observe(el); });
 
-  // ── CONTACT FORM (EmailJS) ──
+// ── CONTACT FORM (EmailJS) ──
   document.getElementById('cform').addEventListener('submit', function(e) {
     e.preventDefault();
     var btn = this.querySelector('.btn-submit');
     var form = this;
+    
     btn.textContent = 'Sending...';
     btn.disabled = true;
+
+    // Use your specific EmailJS IDs here
     emailjs.sendForm('service_g16qfkq', 'template_fpcdsov', form)
       .then(function() {
         btn.textContent = 'Message Sent ✓';
@@ -603,6 +606,7 @@ document.addEventListener('DOMContentLoaded', function() {
           btn.disabled = false;
         }, 4000);
       }, function(error) {
+        console.log("EmailJS Error:", error);
         btn.textContent = 'Failed — Try Again';
         btn.style.borderColor = '#ff4444';
         btn.style.color = '#ff4444';
@@ -615,14 +619,25 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 
-  // ── MODAL ──
+  // ── MODAL LOGIC ──
   var overlay = document.getElementById('overlay');
-  function openModal(id) { overlay.style.display='block'; document.getElementById('modal-'+id).style.display='block'; document.body.style.overflow='hidden'; }
-  function closeAll() { overlay.style.display='none'; document.getElementById('modal-guess').style.display='none'; document.getElementById('modal-rps').style.display='none'; document.body.style.overflow=''; }
+  function openModal(id) { 
+    overlay.style.display='block'; 
+    document.getElementById('modal-'+id).style.display='block'; 
+    document.body.style.overflow='hidden'; 
+  }
+  function closeAll() { 
+    overlay.style.display='none'; 
+    document.getElementById('modal-guess').style.display='none'; 
+    document.getElementById('modal-rps').style.display='none'; 
+    document.body.style.overflow=''; 
+  }
+
   overlay.addEventListener('click', closeAll);
   document.getElementById('btn-close-guess').addEventListener('click', closeAll);
   document.getElementById('btn-close-rps').addEventListener('click', closeAll);
   document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeAll(); });
+  
   document.getElementById('card-guess').addEventListener('click', function() { startGuess(); openModal('guess'); });
   document.getElementById('card-rps').addEventListener('click', function() { openModal('rps'); });
 
@@ -637,11 +652,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('btn-guess').disabled = false;
     inp.focus();
   }
+
   function doGuess() {
     var inp = document.getElementById('guess-input');
     var log = document.getElementById('guess-log');
     var val = parseInt(inp.value, 10);
-    if (isNaN(val) || val < 1 || val > 100) { log.innerHTML += '<span class="tr">ERROR: Input must be between 1 and 100.</span>\n'; log.scrollTop=log.scrollHeight; return; }
+    if (isNaN(val) || val < 1 || val > 100) { 
+      log.innerHTML += '<span class="tr">ERROR: Input must be between 1 and 100.</span>\n'; 
+      log.scrollTop=log.scrollHeight; 
+      return; 
+    }
     gCount++;
     log.innerHTML += '<span class="tr">></span> INPUT(' + val + ')  <span class="tm">[attempt #' + gCount + ']</span>\n';
     if (val > secret) log.innerHTML += '  RESULT: TOO HIGH — go lower ↓\n';
@@ -653,6 +673,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     inp.value = ''; inp.focus(); log.scrollTop = log.scrollHeight;
   }
+  
   document.getElementById('btn-guess').addEventListener('click', doGuess);
   document.getElementById('btn-reset-guess').addEventListener('click', startGuess);
   document.getElementById('guess-input').addEventListener('keydown', function(e) { if (e.key==='Enter') doGuess(); });
@@ -660,6 +681,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // ── RPS GAME ──
   var scYou=0, scCpu=0;
   var names={s:'Stone',p:'Paper',c:'Scissors'}, emojis={s:'🪨',p:'📄',c:'✂️'}, vals={s:-1,p:1,c:0};
+
   function playRPS(choice) {
     var opts=['s','p','c'], cpu=opts[Math.floor(Math.random()*3)];
     var you=vals[choice], comp=vals[cpu];
@@ -675,5 +697,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('sc-you').textContent=scYou;
     document.getElementById('sc-cpu').textContent=scCpu;
   }
+
   document.getElementById('btn-stone').addEventListener('click',function(){this.classList.add('active');playRPS('s');});
-  document.getEle
+  document.getElementById('btn-paper').addEventListener('click',function(){this.classList.add('active');playRPS('p');});
+  document.getElementById('btn-scissors').addEventListener('click',function(){this.classList.add('active');playRPS('c');});
+
+}); // End of DOMContentLoaded
+</script>
+</body>
+</html>
