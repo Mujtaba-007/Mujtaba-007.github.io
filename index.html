@@ -401,6 +401,18 @@ footer em{color:var(--cyan);font-style:normal;}
         <div class="cert-name">Introduction to IoT & Digital Transformation</div>
         <div class="cert-open">View Certificate</div>
       </a>
+      <a class="cert-card" href="AI Fluency for students.pdf" target="_blank">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-issuer">Anthropic</div>
+        <div class="cert-name">AI Fluency for Students</div>
+        <div class="cert-open">View Certificate</div>
+      </a>
+      <a class="cert-card" href="Claude 101.pdf" target="_blank">
+        <div class="cert-icon">🤖</div>
+        <div class="cert-issuer">Anthropic</div>
+        <div class="cert-name">Claude 101</div>
+        <div class="cert-open">View Certificate</div>
+      </a>
     </div>
   </div>
 </section>
@@ -414,22 +426,10 @@ footer em{color:var(--cyan);font-style:normal;}
       <h2 class="sec-title">Let's build<br/><em>something</em><br/>together</h2>
       <p class="contact-sub">Whether you have a project in mind, an internship opportunity, or just want to connect — my inbox is always open.</p>
       <div class="contact-rows">
-    <a href="mailto:hussainmujtaba223@gmail.com" class="crow">
-        <span class="cicon">@</span>
-        <span class="clbl">Email</span>
-        <span class="cval">hussainmujtaba223@gmail.com</span>
-    </a>
-    <a href="https://www.linkedin.com/in/mujtaba-hussain-b32267325" target="_blank" class="crow">
-        <span class="cicon">in</span>
-        <span class="clbl">LinkedIn</span>
-        <span class="cval">mujtaba-hussain-b32267325</span>
-    </a>
-    <a href="tel:+917842936687" class="crow">
-        <span class="cicon">☎</span>
-        <span class="clbl">Phone</span>
-        <span class="cval">+91 78429 36687</span>
-    </a>
-</div>
+        <a href="/cdn-cgi/l/email-protection#dbb3aea8a8bab2b5b6aeb1afbab9bae9e9e89bbcb6bab2b7f5b8b4b6" class="crow"><span class="cicon">@</span><span class="clbl">Email</span><span class="cval"><span class="__cf_email__" data-cfemail="731b060000121a1d1e06190712111241414033141e121a1f5d101c1e">[email&#160;protected]</span></span></a>
+        <a href="https://www.linkedin.com/in/mujtaba-hussain-b32267325" target="_blank" class="crow"><span class="cicon">in</span><span class="clbl">LinkedIn</span><span class="cval">mujtaba-hussain-b32267325</span></a>
+        <a href="tel:+917842936687" class="crow"><span class="cicon">☎</span><span class="clbl">Phone</span><span class="cval">+91 78429 36687</span></a>
+      </div>
     </div>
     <div class="rev">
       <form class="form-wrap" id="cform">
@@ -583,16 +583,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.08 });
   revEls.forEach(function(el) { revObs.observe(el); });
 
-// ── CONTACT FORM (EmailJS) ──
+  // ── CONTACT FORM (EmailJS) ──
   document.getElementById('cform').addEventListener('submit', function(e) {
     e.preventDefault();
     var btn = this.querySelector('.btn-submit');
     var form = this;
-    
     btn.textContent = 'Sending...';
     btn.disabled = true;
-
-    // Use your specific EmailJS IDs here
     emailjs.sendForm('service_g16qfkq', 'template_fpcdsov', form)
       .then(function() {
         btn.textContent = 'Message Sent ✓';
@@ -606,7 +603,6 @@ document.addEventListener('DOMContentLoaded', function() {
           btn.disabled = false;
         }, 4000);
       }, function(error) {
-        console.log("EmailJS Error:", error);
         btn.textContent = 'Failed — Try Again';
         btn.style.borderColor = '#ff4444';
         btn.style.color = '#ff4444';
@@ -619,25 +615,14 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 
-  // ── MODAL LOGIC ──
+  // ── MODAL ──
   var overlay = document.getElementById('overlay');
-  function openModal(id) { 
-    overlay.style.display='block'; 
-    document.getElementById('modal-'+id).style.display='block'; 
-    document.body.style.overflow='hidden'; 
-  }
-  function closeAll() { 
-    overlay.style.display='none'; 
-    document.getElementById('modal-guess').style.display='none'; 
-    document.getElementById('modal-rps').style.display='none'; 
-    document.body.style.overflow=''; 
-  }
-
+  function openModal(id) { overlay.style.display='block'; document.getElementById('modal-'+id).style.display='block'; document.body.style.overflow='hidden'; }
+  function closeAll() { overlay.style.display='none'; document.getElementById('modal-guess').style.display='none'; document.getElementById('modal-rps').style.display='none'; document.body.style.overflow=''; }
   overlay.addEventListener('click', closeAll);
   document.getElementById('btn-close-guess').addEventListener('click', closeAll);
   document.getElementById('btn-close-rps').addEventListener('click', closeAll);
   document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeAll(); });
-  
   document.getElementById('card-guess').addEventListener('click', function() { startGuess(); openModal('guess'); });
   document.getElementById('card-rps').addEventListener('click', function() { openModal('rps'); });
 
@@ -652,16 +637,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('btn-guess').disabled = false;
     inp.focus();
   }
-
   function doGuess() {
     var inp = document.getElementById('guess-input');
     var log = document.getElementById('guess-log');
     var val = parseInt(inp.value, 10);
-    if (isNaN(val) || val < 1 || val > 100) { 
-      log.innerHTML += '<span class="tr">ERROR: Input must be between 1 and 100.</span>\n'; 
-      log.scrollTop=log.scrollHeight; 
-      return; 
-    }
+    if (isNaN(val) || val < 1 || val > 100) { log.innerHTML += '<span class="tr">ERROR: Input must be between 1 and 100.</span>\n'; log.scrollTop=log.scrollHeight; return; }
     gCount++;
     log.innerHTML += '<span class="tr">></span> INPUT(' + val + ')  <span class="tm">[attempt #' + gCount + ']</span>\n';
     if (val > secret) log.innerHTML += '  RESULT: TOO HIGH — go lower ↓\n';
@@ -673,7 +653,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     inp.value = ''; inp.focus(); log.scrollTop = log.scrollHeight;
   }
-  
   document.getElementById('btn-guess').addEventListener('click', doGuess);
   document.getElementById('btn-reset-guess').addEventListener('click', startGuess);
   document.getElementById('guess-input').addEventListener('keydown', function(e) { if (e.key==='Enter') doGuess(); });
@@ -681,7 +660,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // ── RPS GAME ──
   var scYou=0, scCpu=0;
   var names={s:'Stone',p:'Paper',c:'Scissors'}, emojis={s:'🪨',p:'📄',c:'✂️'}, vals={s:-1,p:1,c:0};
-
   function playRPS(choice) {
     var opts=['s','p','c'], cpu=opts[Math.floor(Math.random()*3)];
     var you=vals[choice], comp=vals[cpu];
@@ -697,12 +675,5 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('sc-you').textContent=scYou;
     document.getElementById('sc-cpu').textContent=scCpu;
   }
-
   document.getElementById('btn-stone').addEventListener('click',function(){this.classList.add('active');playRPS('s');});
-  document.getElementById('btn-paper').addEventListener('click',function(){this.classList.add('active');playRPS('p');});
-  document.getElementById('btn-scissors').addEventListener('click',function(){this.classList.add('active');playRPS('c');});
-
-}); // End of DOMContentLoaded
-</script>
-</body>
-</html>
+  document.getEle
