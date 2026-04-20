@@ -229,7 +229,6 @@ footer em{color:var(--cyan);font-style:normal;}
 <canvas id="bg-canvas"></canvas>
 <div class="scanlines"></div>
 
-<!-- NAV -->
 <nav id="navbar">
   <div class="nav-logo">MH_DEV</div>
   <ul class="nav-links">
@@ -239,7 +238,6 @@ footer em{color:var(--cyan);font-style:normal;}
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-left">
     <p class="hero-tag">CS Student · Hyderabad · 2024</p>
@@ -279,7 +277,6 @@ footer em{color:var(--cyan);font-style:normal;}
   </div>
 </section>
 
-<!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
     <span>Python</span><span class="ac">◆</span><span>Java</span><span class="ac">◆</span><span>C Programming</span><span class="ac">◆</span><span>Computer Science</span><span class="ac">◆</span><span>Deloitte Certified</span><span class="ac">◆</span><span>Methodist College</span><span class="ac">◆</span><span>Open to Opportunities</span><span class="ac">◆</span><span>Python</span><span class="ac">◆</span><span>Java</span><span class="ac">◆</span><span>C Programming</span><span class="ac">◆</span><span>Computer Science</span><span class="ac">◆</span><span>Deloitte Certified</span><span class="ac">◆</span><span>Methodist College</span><span class="ac">◆</span><span>Open to Opportunities</span><span class="ac">◆</span>
@@ -287,7 +284,6 @@ footer em{color:var(--cyan);font-style:normal;}
 </div>
 <div class="sec-divider"></div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="about-wrap">
     <div class="about-sticky rev">
@@ -314,7 +310,6 @@ footer em{color:var(--cyan);font-style:normal;}
 </section>
 <div class="sec-divider"></div>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="rev">
     <div class="eyebrow">Selected Work</div>
@@ -418,7 +413,6 @@ footer em{color:var(--cyan);font-style:normal;}
 </section>
 <div class="sec-divider"></div>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-wrap">
     <div class="rev">
@@ -426,7 +420,7 @@ footer em{color:var(--cyan);font-style:normal;}
       <h2 class="sec-title">Let's build<br/><em>something</em><br/>together</h2>
       <p class="contact-sub">Whether you have a project in mind, an internship opportunity, or just want to connect — my inbox is always open.</p>
       <div class="contact-rows">
-        <a href="/cdn-cgi/l/email-protection#dbb3aea8a8bab2b5b6aeb1afbab9bae9e9e89bbcb6bab2b7f5b8b4b6" class="crow"><span class="cicon">@</span><span class="clbl">Email</span><span class="cval"><span class="__cf_email__" data-cfemail="731b060000121a1d1e06190712111241414033141e121a1f5d101c1e">[email&#160;protected]</span></span></a>
+        <a href="mailto:hussainmujtaba223@gmail.com" class="crow"><span class="cicon">@</span><span class="clbl">Email</span><span class="cval">hussainmujtaba223@gmail.com</span></a>
         <a href="https://www.linkedin.com/in/mujtaba-hussain-b32267325" target="_blank" class="crow"><span class="cicon">in</span><span class="clbl">LinkedIn</span><span class="cval">mujtaba-hussain-b32267325</span></a>
         <a href="tel:+917842936687" class="crow"><span class="cicon">☎</span><span class="clbl">Phone</span><span class="cval">+91 78429 36687</span></a>
       </div>
@@ -442,16 +436,13 @@ footer em{color:var(--cyan);font-style:normal;}
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div>© 2025 <em>MUJTABA HUSSAIN</em></div>
   <div>Hyderabad, India</div>
 </footer>
 
-<!-- OVERLAY -->
 <div id="overlay"></div>
 
-<!-- GUESS MODAL -->
 <div class="gmodal" id="modal-guess">
   <div class="mhead">
     <div><div class="meyebrow">Project 01 — Live Demo</div><div class="mtitle">Number Guessing Game</div></div>
@@ -465,7 +456,6 @@ footer em{color:var(--cyan);font-style:normal;}
   </div>
 </div>
 
-<!-- RPS MODAL -->
 <div class="gmodal" id="modal-rps">
   <div class="mhead">
     <div><div class="meyebrow">Project 02 — Live Demo</div><div class="mtitle">Rock Paper Scissors</div></div>
@@ -513,22 +503,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function drawBg() {
     bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-    // draw connections
     for (var i = 0; i < particles.length; i++) {
       var p = particles[i];
       p.x += p.vx; p.y += p.vy;
       if (p.x < 0 || p.x > bgCanvas.width) p.vx *= -1;
       if (p.y < 0 || p.y > bgCanvas.height) p.vy *= -1;
-      // mouse repel
       var dx = p.x - mouse.x, dy = p.y - mouse.y;
       var dist = Math.sqrt(dx*dx + dy*dy);
       if (dist < 100) { p.x += dx/dist*1.5; p.y += dy/dist*1.5; }
-      // draw dot
       bgCtx.beginPath();
       bgCtx.arc(p.x, p.y, p.r, 0, Math.PI*2);
       bgCtx.fillStyle = 'rgba(255,255,255,' + p.alpha + ')';
       bgCtx.fill();
-      // draw lines
       for (var j = i+1; j < particles.length; j++) {
         var q = particles[j];
         var d = Math.sqrt((p.x-q.x)*(p.x-q.x)+(p.y-q.y)*(p.y-q.y));
@@ -676,4 +662,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('sc-cpu').textContent=scCpu;
   }
   document.getElementById('btn-stone').addEventListener('click',function(){this.classList.add('active');playRPS('s');});
-  document.getEle
+  document.getElementById('btn-paper').addEventListener('click',function(){this.classList.add('active');playRPS('p');});
+  document.getElementById('btn-scissors').addEventListener('click',function(){this.classList.add('active');playRPS('c');});
+
+}); 
+</script>
+</body>
+</html>
