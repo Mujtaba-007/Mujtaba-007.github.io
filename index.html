@@ -105,22 +105,8 @@ section{position:relative;z-index:2;padding:5.5rem 3rem;}
 
 /* PROJECTS */
 #projects{background:var(--bg);}
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-top:0.5rem;}
-.proj-card{background:rgba(8,13,26,0.9);border:1px solid var(--border);padding:1.8rem;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;cursor:pointer;user-select:none;}
-.proj-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.05),transparent);opacity:0;transition:opacity 0.25s;}
-.proj-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform 0.28s;}
-.proj-card:hover{transform:translateY(-5px) perspective(600px) rotateX(2deg);box-shadow:0 20px 60px rgba(255,255,255,0.1),var(--glow);border-color:rgba(255,255,255,0.4);}
-.proj-card:hover::before{opacity:1;}
-.proj-card:hover::after{transform:scaleX(1);}
-.proj-num{font-family:'Orbitron',monospace;font-size:2.4rem;font-weight:900;color:rgba(255,255,255,0.15);line-height:1;margin-bottom:0.8rem;}
-.proj-play{position:absolute;top:1.3rem;right:1.3rem;width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid var(--cyan);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-size:0.7rem;transition:all 0.2s;}
-.proj-card:hover .proj-play{background:var(--cyan);color:var(--bg);box-shadow:var(--glow);}
-.proj-title{font-family:'Orbitron',monospace;font-size:1.05rem;font-weight:700;margin-bottom:0.5rem;color:var(--text);}
-.proj-desc{font-size:0.83rem;color:#718096;line-height:1.7;margin-bottom:1rem;}
-.proj-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
-.proj-tag{font-family:'Share Tech Mono',monospace;font-size:0.57rem;padding:0.15rem 0.45rem;background:transparent;border:1px solid rgba(255,255,255,0.2);color:#4a5568;letter-spacing:0.06em;}
-.proj-hint{font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--cyan);letter-spacing:0.1em;margin-top:0.85rem;opacity:0.7;}
-.certs-section{margin-top:3.5rem;}
+.certs-section{margin-top:0;}
+
 .certs-label{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.2rem;}
 .certs-label::before{content:'// ';}
 .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
@@ -171,44 +157,6 @@ footer em{color:var(--cyan);font-style:normal;}
 .rev.hide{opacity:0;transform:translateY(24px);pointer-events:none;}
 .rev.show{opacity:1;transform:translateY(0);pointer-events:auto;}
 
-/* MODAL */
-#overlay{display:none;position:fixed;inset:0;background:rgba(2,4,8,0.92);z-index:400;backdrop-filter:blur(8px);}
-.gmodal{display:none;position:fixed;z-index:500;top:50%;left:50%;transform:translate(-50%,-50%);width:min(500px,94vw);max-height:88vh;overflow-y:auto;background:var(--bg2);border:1px solid rgba(255,255,255,0.3);padding:2rem;box-shadow:0 0 60px rgba(255,255,255,0.1);}
-.mhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.3rem;}
-.meyebrow{font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.22rem;}
-.meyebrow::before{content:'// ';}
-.mtitle{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:700;color:var(--text);}
-.mclose{background:none;border:1px solid rgba(255,255,255,0.3);width:32px;height:32px;font-size:0.85rem;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.18s;font-family:'Share Tech Mono',monospace;}
-.mclose:hover{background:var(--cyan);border-color:var(--cyan);color:var(--bg);}
-
-/* GUESS GAME */
-.terminal{background:#020408;color:#4ade80;font-family:'Share Tech Mono',monospace;font-size:0.74rem;padding:1rem;min-height:145px;max-height:190px;overflow-y:auto;line-height:1.9;margin-bottom:0.85rem;white-space:pre-wrap;border:1px solid rgba(255,255,255,0.1);}
-.tr{color:var(--cyan);}.tg{color:var(--green);}.tm{color:#2d3748;}
-.guess-row{display:flex;gap:0.5rem;}
-.ginput{flex:1;padding:0.7rem 0.85rem;border:1px solid var(--border);background:rgba(255,255,255,0.03);font-family:'Share Tech Mono',monospace;font-size:0.74rem;outline:none;color:var(--cyan);}
-.ginput:focus{border-color:var(--cyan);box-shadow:var(--glow);}
-.gbtn{padding:0.7rem 1rem;background:transparent;color:var(--cyan);border:1px solid var(--cyan);font-family:'Share Tech Mono',monospace;font-size:0.66rem;letter-spacing:0.1em;cursor:pointer;transition:all 0.15s;}
-.gbtn:hover{background:var(--cyan);color:var(--bg);}
-.gbtn:disabled{border-color:#2d3748;color:#2d3748;cursor:default;background:none;}
-.greset{padding:0.7rem 0.85rem;background:none;border:1px solid var(--border);color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:0.74rem;cursor:pointer;transition:all 0.18s;}
-.greset:hover{border-color:var(--cyan);color:var(--cyan);}
-
-/* RPS GAME */
-.rps-score{font-family:'Share Tech Mono',monospace;font-size:0.68rem;text-align:center;color:var(--muted);letter-spacing:0.12em;margin-bottom:0.9rem;}
-.rps-score b{font-size:1.1rem;}
-.rps-arena{background:rgba(255,255,255,0.03);border:1px solid var(--border);min-height:85px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.28rem;padding:1.1rem;text-align:center;margin-bottom:0.9rem;transition:all 0.25s;}
-.rps-arena .big{font-size:2.1rem;line-height:1;}
-.rps-arena .res{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--text);}
-.rps-arena .sub{font-family:'Share Tech Mono',monospace;font-size:0.62rem;color:var(--muted);letter-spacing:0.08em;}
-.rps-btns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;}
-.rpsbtn{padding:0.85rem 0.4rem;background:rgba(255,255,255,0.03);color:var(--text);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:0.3rem;font-size:1.6rem;cursor:pointer;transition:all 0.15s;}
-.rpsbtn span{font-family:'Share Tech Mono',monospace;font-size:0.52rem;letter-spacing:0.1em;color:var(--muted);}
-.rpsbtn:hover{border-color:var(--cyan);background:rgba(255,255,255,0.08);transform:translateY(-3px);box-shadow:var(--glow);}
-.rpsbtn.active{border-color:var(--cyan);background:rgba(255,255,255,0.1);}
-.bg-win{background:rgba(0,255,136,0.08)!important;border-color:rgba(0,255,136,0.3)!important;}
-.bg-lose{background:rgba(255,50,50,0.08)!important;border-color:rgba(255,50,50,0.3)!important;}
-.bg-draw{background:rgba(255,255,255,0.06)!important;}
-
 /* RESPONSIVE */
 @media(max-width:820px){
   nav{padding:0.9rem 1.5rem;}
@@ -234,7 +182,6 @@ footer em{color:var(--cyan);font-style:normal;}
   <div class="nav-logo">MH_DEV</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#projects">Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -249,8 +196,7 @@ footer em{color:var(--cyan);font-style:normal;}
     </h1>
     <p class="hero-sub">Building thoughtful software with Python, Java & C — exploring what code can do, one project at a time.</p>
     <div class="hero-btns">
-      <a href="#projects" class="btn btn-primary">View My Work</a>
-      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      <a href="#contact" class="btn btn-primary">Get in Touch</a>
     </div>
   </div>
   <div class="hero-right">
@@ -314,30 +260,8 @@ footer em{color:var(--cyan);font-style:normal;}
 </section>
 <div class="sec-divider"></div>
 
-<!-- PROJECTS -->
+<!-- CERTS -->
 <section id="projects">
-  <div class="rev">
-    <div class="eyebrow">Selected Work</div>
-    <h2 class="sec-title">Projects &<br/><em>Experiments</em></h2>
-  </div>
-  <div class="proj-grid">
-    <div class="proj-card rev" id="card-guess">
-      <div class="proj-num">01</div>
-      <div class="proj-play">▶</div>
-      <div class="proj-title">Number Guessing Game</div>
-      <div class="proj-desc">Guess a secret number between 1–100. The program gives higher/lower hints after each attempt. Built using Python's random module and a while loop.</div>
-      <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Random Module</span><span class="proj-tag">Game Logic</span></div>
-      <div class="proj-hint">▶ Click to play an interactive demo</div>
-    </div>
-    <div class="proj-card rev" id="card-rps">
-      <div class="proj-num">02</div>
-      <div class="proj-play">▶</div>
-      <div class="proj-title">Rock Paper Scissors</div>
-      <div class="proj-desc">A terminal game where you face the computer. Uses Python dictionaries to map choices and conditional logic to determine the winner each round.</div>
-      <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Dictionaries</span><span class="proj-tag">Game Logic</span></div>
-      <div class="proj-hint">▶ Click to play an interactive demo</div>
-    </div>
-  </div>
   <div class="certs-section rev">
     <div class="certs-label">Certifications</div>
     <div class="cert-grid">
@@ -472,40 +396,6 @@ footer em{color:var(--cyan);font-style:normal;}
   <div>Hyderabad, India</div>
 </footer>
 
-<!-- OVERLAY -->
-<div id="overlay"></div>
-
-<!-- GUESS MODAL -->
-<div class="gmodal" id="modal-guess">
-  <div class="mhead">
-    <div><div class="meyebrow">Project 01 — Live Demo</div><div class="mtitle">Number Guessing Game</div></div>
-    <button class="mclose" id="btn-close-guess">✕</button>
-  </div>
-  <div class="terminal" id="guess-log"></div>
-  <div class="guess-row">
-    <input class="ginput" id="guess-input" type="number" min="1" max="100" placeholder="Enter 1 – 100"/>
-    <button class="gbtn" id="btn-guess">Guess</button>
-    <button class="greset" id="btn-reset-guess" title="New game">↺</button>
-  </div>
-</div>
-
-<!-- RPS MODAL -->
-<div class="gmodal" id="modal-rps">
-  <div class="mhead">
-    <div><div class="meyebrow">Project 02 — Live Demo</div><div class="mtitle">Rock Paper Scissors</div></div>
-    <button class="mclose" id="btn-close-rps">✕</button>
-  </div>
-  <div class="rps-score">YOU &nbsp;<b id="sc-you" style="color:var(--cyan)">0</b>&nbsp; — &nbsp;<b id="sc-cpu" style="color:var(--purple)">0</b>&nbsp; CPU</div>
-  <div class="rps-arena" id="rps-arena">
-    <div class="big">🎮</div>
-    <div class="sub">Choose your move below</div>
-  </div>
-  <div class="rps-btns">
-    <button class="rpsbtn" id="btn-stone">🪨<span>STONE</span></button>
-    <button class="rpsbtn" id="btn-paper">📄<span>PAPER</span></button>
-    <button class="rpsbtn" id="btn-scissors">✂️<span>SCISSORS</span></button>
-  </div>
-</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -570,19 +460,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   drawBg();
 
-  // ── 3D TILT ON PROJECT CARDS ──
-  document.querySelectorAll('.proj-card').forEach(function(card) {
-    card.addEventListener('mousemove', function(e) {
-      var r = card.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width - 0.5;
-      var y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = 'perspective(800px) rotateY(' + (x*12) + 'deg) rotateX(' + (-y*8) + 'deg) translateY(-5px)';
-    });
-    card.addEventListener('mouseleave', function() {
-      card.style.transform = '';
-    });
-  });
-
   // ── NAV HIDE ON SCROLL ──
   var navbar = document.getElementById('navbar');
   var lastY = 0;
@@ -639,65 +516,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 
-  // ── MODAL ──
-  var overlay = document.getElementById('overlay');
-  function openModal(id) { overlay.style.display='block'; document.getElementById('modal-'+id).style.display='block'; document.body.style.overflow='hidden'; }
-  function closeAll() { overlay.style.display='none'; document.getElementById('modal-guess').style.display='none'; document.getElementById('modal-rps').style.display='none'; document.body.style.overflow=''; }
-  overlay.addEventListener('click', closeAll);
-  document.getElementById('btn-close-guess').addEventListener('click', closeAll);
-  document.getElementById('btn-close-rps').addEventListener('click', closeAll);
-  document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeAll(); });
-  document.getElementById('card-guess').addEventListener('click', function() { startGuess(); openModal('guess'); });
-  document.getElementById('card-rps').addEventListener('click', function() { openModal('rps'); });
 
-  // ── GUESS GAME ──
-  var secret, gCount;
-  function startGuess() {
-    secret = Math.floor(Math.random()*100)+1; gCount = 0;
-    var log = document.getElementById('guess-log');
-    log.innerHTML = '<span class="tr">></span> INITIALIZING GAME...\n<span class="tm">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>\nSECRET NUMBER: [ENCRYPTED]\nRANGE: 1 to 100\nSTATUS: Awaiting input...\n<span class="tm">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>\n';
-    var inp = document.getElementById('guess-input');
-    inp.value = ''; inp.disabled = false;
-    document.getElementById('btn-guess').disabled = false;
-    inp.focus();
-  }
-  function doGuess() {
-    var inp = document.getElementById('guess-input');
-    var log = document.getElementById('guess-log');
-    var val = parseInt(inp.value, 10);
-    if (isNaN(val) || val < 1 || val > 100) { log.innerHTML += '<span class="tr">ERROR: Input must be between 1 and 100.</span>\n'; log.scrollTop=log.scrollHeight; return; }
-    gCount++;
-    log.innerHTML += '<span class="tr">></span> INPUT(' + val + ')  <span class="tm">[attempt #' + gCount + ']</span>\n';
-    if (val > secret) log.innerHTML += '  RESULT: TOO HIGH — go lower ↓\n';
-    else if (val < secret) log.innerHTML += '  RESULT: TOO LOW  — go higher ↑\n';
-    else {
-      log.innerHTML += '<span class="tg">  SUCCESS: ' + val + ' IS CORRECT! 🎉\n  Solved in ' + gCount + ' attempt' + (gCount===1?'':'s') + '.</span>\n';
-      log.innerHTML += '<span class="tm">  Press ↺ to start new game.</span>\n';
-      inp.disabled = true; document.getElementById('btn-guess').disabled = true;
-    }
-    inp.value = ''; inp.focus(); log.scrollTop = log.scrollHeight;
-  }
-  document.getElementById('btn-guess').addEventListener('click', doGuess);
-  document.getElementById('btn-reset-guess').addEventListener('click', startGuess);
-  document.getElementById('guess-input').addEventListener('keydown', function(e) { if (e.key==='Enter') doGuess(); });
-
-  // ── RPS GAME ──
-  var scYou=0, scCpu=0;
-  var names={s:'Stone',p:'Paper',c:'Scissors'}, emojis={s:'🪨',p:'📄',c:'✂️'}, vals={s:-1,p:1,c:0};
-  function playRPS(choice) {
-    var opts=['s','p','c'], cpu=opts[Math.floor(Math.random()*3)];
-    var you=vals[choice], comp=vals[cpu];
-    var arena=document.getElementById('rps-arena');
-    arena.className='rps-arena';
-    document.querySelectorAll('.rpsbtn').forEach(function(b){b.classList.remove('active');});
-    var result, bg;
-    if (you===comp){result='DRAW';bg='bg-draw';}
-    else if((comp===-1&&you===1)||(comp===1&&you===0)||(comp===0&&you===-1)){result='YOU WIN 🎉';bg='bg-win';scYou++;}
-    else{result='YOU LOSE 😅';bg='bg-lose';scCpu++;}
-    arena.classList.add(bg);
-    arena.innerHTML='<div style="display:flex;gap:1.1rem;font-size:1.9rem;margin-bottom:0.35rem"><span>'+emojis[choice]+'</span><span style="font-family:Share Tech Mono,monospace;font-size:0.7rem;color:var(--muted);align-self:center">VS</span><span>'+emojis[cpu]+'</span></div><div class="res">'+result+'</div><div class="sub">You: '+names[choice]+' &nbsp;|&nbsp; CPU: '+names[cpu]+'</div>';
-    document.getElementById('sc-you').textContent=scYou;
-    document.getElementById('sc-cpu').textContent=scCpu;
-  }
-  document.getElementById('btn-stone').addEventListener('click',function(){this.classList.add('active');playRPS('s');});
-  document.getEle
+});
+</script>
