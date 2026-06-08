@@ -460,7 +460,7 @@ footer em{color:var(--cyan);font-style:normal;}
         <div><label class="flabel">Your Name</label><input type="text" name="name" class="finput" placeholder="Jane Smith" required/></div>
         <div><label class="flabel">Email Address</label><input type="email" name="email" class="finput" placeholder="jane@example.com" required/></div>
         <div><label class="flabel">Message</label><textarea name="message" class="ftextarea" placeholder="Tell me about your project or opportunity..." required></textarea></div>
-        <button type="submit" class="btn-submit">Send Message →</button>
+        <button type="button" class="btn-submit" id="btn-submit">Send Message →</button>
       </form>
     </div>
   </div>
@@ -608,10 +608,10 @@ document.addEventListener('DOMContentLoaded', function() {
   revEls.forEach(function(el) { revObs.observe(el); });
 
   // ── CONTACT FORM (EmailJS) ──
-  document.getElementById('cform').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = this.querySelector('.btn-submit');
-    var form = this;
+  document.getElementById('btn-submit').addEventListener('click', function() {
+    var form = document.getElementById('cform');
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var btn = this;
     btn.textContent = 'Sending...';
     btn.disabled = true;
     emailjs.sendForm('service_g16qfkq', 'template_fpcdsov', form)
