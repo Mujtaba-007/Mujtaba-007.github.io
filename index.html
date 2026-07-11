@@ -26,6 +26,23 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 
 /* CANVAS BG */
 #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+/* MESH GRADIENT OVERLAY */
+#mesh-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.55;mix-blend-mode:screen;}
+/* PULSING ORB */
+#pulse-orb{position:absolute;bottom:2.5rem;right:2.5rem;z-index:10;width:80px;height:80px;display:flex;align-items:center;justify-content:center;}
+.orb-ring-text{position:absolute;inset:-14px;animation:orbSpin 18s linear infinite;}
+@keyframes orbSpin{to{transform:rotate(360deg);}}
+/* GOOEY NAV BUTTON */
+.nav-hire-btn{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.42rem 1.2rem;border-radius:50px;background:transparent;color:#ffffff;border:1px solid #ffffff;cursor:pointer;transition:background 0.2s,color 0.2s;white-space:nowrap;}
+.nav-hire-btn:hover{background:#ffffff;color:#050810;}
+/* GRADIENT HERO TEXT */
+.hero-name .line1{display:block;background:linear-gradient(135deg,#ffffff 0%,#a5f3fc 40%,#ffffff 100%);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradShift 6s ease infinite;}
+.hero-name .line2{display:block;background:linear-gradient(135deg,#a78bfa 0%,#f97316 50%,#a78bfa 100%);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradShift 6s ease infinite reverse;position:relative;}
+.hero-name .line2::after{content:'';position:absolute;bottom:-4px;left:0;width:100%;height:2px;background:linear-gradient(90deg,#a78bfa,transparent);animation:scanline 2s ease-in-out infinite;}
+@keyframes gradShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+/* HERO BADGE */
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.35rem 0.9rem;border-radius:50px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(8px);font-family:'Share Tech Mono',monospace;font-size:0.6rem;letter-spacing:0.14em;color:rgba(255,255,255,0.75);margin-bottom:1.2rem;opacity:0;animation:fadeUp 0.7s ease 0.1s forwards;}
+.hero-badge::before{content:'✦';color:#06b6d4;font-size:0.7rem;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(5,8,16,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:transform 0.32s ease;}
@@ -54,6 +71,9 @@ nav.hide{transform:translateY(-100%);}
 
 /* HERO RIGHT - CODE SNIPPET */
 .hero-right{position:relative;display:flex;align-items:center;justify-content:center;padding:2rem;}
+#pulse-orb{position:absolute;bottom:2.5rem;right:2.5rem;z-index:10;width:80px;height:80px;display:flex;align-items:center;justify-content:center;}
+.orb-ring-text{position:absolute;inset:-14px;animation:orbSpin 18s linear infinite;width:108px;height:108px;}
+@keyframes orbSpin{to{transform:rotate(360deg);}}
 .code-window{width:100%;max-width:420px;background:rgba(8,13,26,0.95);border:1px solid rgba(255,255,255,0.12);box-shadow:0 0 60px rgba(109,40,217,0.2),0 0 120px rgba(109,40,217,0.08);animation:floatCode 5s ease-in-out infinite;}
 .code-titlebar{display:flex;align-items:center;gap:0.5rem;padding:0.65rem 1rem;background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.08);}
 .code-dot{width:10px;height:10px;border-radius:50%;}
@@ -96,9 +116,6 @@ section{position:relative;z-index:2;padding:5.5rem 3rem;}
 .chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.3rem;}
 .chip{font-family:'Share Tech Mono',monospace;font-size:0.62rem;padding:0.25rem 0.7rem;background:transparent;border:1px solid var(--border);color:#718096;transition:all 0.18s;letter-spacing:0.08em;}
 .chip:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:var(--glow);background:rgba(255,255,255,0.05);}
-.lang-chip{display:inline-flex;align-items:center;gap:0.4rem;font-family:'Share Tech Mono',monospace;font-size:0.62rem;padding:0.3rem 0.75rem 0.3rem 0.5rem;background:transparent;border:1px solid var(--border);color:#718096;transition:all 0.18s;letter-spacing:0.08em;}
-.lang-chip svg{width:14px;height:14px;flex-shrink:0;transition:opacity 0.18s;}
-.lang-chip:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:var(--glow);background:rgba(255,255,255,0.05);}
 .edu-block{margin-top:2rem;}
 .edu-item{border-left:2px solid var(--cyan);padding:1rem 1.3rem;margin-bottom:0.8rem;background:rgba(255,255,255,0.03);transition:background 0.2s;}
 .edu-item:hover{background:rgba(255,255,255,0.07);}
@@ -108,8 +125,25 @@ section{position:relative;z-index:2;padding:5.5rem 3rem;}
 
 /* PROJECTS */
 #projects{background:var(--bg);}
-.certs-section{margin-top:0;}
-
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:0.5rem;}
+.proj-link{position:absolute;top:1.2rem;right:1.2rem;font-family:'Share Tech Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;color:var(--cyan);text-decoration:none;border:1px solid rgba(255,255,255,0.15);padding:0.2rem 0.55rem;transition:all 0.18s;}
+.proj-link:hover{background:var(--cyan);color:var(--bg);border-color:var(--cyan);}
+@media(max-width:900px){.proj-grid{grid-template-columns:1fr;}}
+.proj-card{display:block;text-decoration:none;color:inherit;background:rgba(8,13,26,0.9);border:1px solid var(--border);padding:1.8rem;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;cursor:pointer;user-select:none;}
+.proj-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.05),transparent);opacity:0;transition:opacity 0.25s;}
+.proj-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform 0.28s;}
+.proj-card:hover{transform:translateY(-5px) perspective(600px) rotateX(2deg);box-shadow:0 20px 60px rgba(255,255,255,0.1),var(--glow);border-color:rgba(255,255,255,0.4);}
+.proj-card:hover::before{opacity:1;}
+.proj-card:hover::after{transform:scaleX(1);}
+.proj-num{font-family:'Orbitron',monospace;font-size:2.4rem;font-weight:900;color:rgba(255,255,255,0.15);line-height:1;margin-bottom:0.8rem;}
+.proj-play{position:absolute;top:1.3rem;right:1.3rem;width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid var(--cyan);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-size:0.7rem;transition:all 0.2s;}
+.proj-card:hover .proj-play{background:var(--cyan);color:var(--bg);box-shadow:var(--glow);}
+.proj-title{font-family:'Orbitron',monospace;font-size:1.05rem;font-weight:700;margin-bottom:0.5rem;color:var(--text);}
+.proj-desc{font-size:0.83rem;color:#718096;line-height:1.7;margin-bottom:1rem;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.proj-tag{font-family:'Share Tech Mono',monospace;font-size:0.57rem;padding:0.15rem 0.45rem;background:transparent;border:1px solid rgba(255,255,255,0.2);color:#4a5568;letter-spacing:0.06em;}
+.proj-hint{font-family:'Share Tech Mono',monospace;font-size:0.58rem;color:var(--cyan);letter-spacing:0.1em;margin-top:0.85rem;opacity:0.7;}
+.certs-section{margin-top:3.5rem;}
 .certs-label{font-family:'Share Tech Mono',monospace;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:1.2rem;}
 .certs-label::before{content:'// ';}
 .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
@@ -160,6 +194,10 @@ footer em{color:var(--cyan);font-style:normal;}
 .rev.hide{opacity:0;transform:translateY(24px);pointer-events:none;}
 .rev.show{opacity:1;transform:translateY(0);pointer-events:auto;}
 
+
+
+.bg-draw{background:rgba(255,255,255,0.06)!important;}
+
 /* RESPONSIVE */
 @media(max-width:820px){
   nav{padding:0.9rem 1.5rem;}
@@ -178,7 +216,17 @@ footer em{color:var(--cyan);font-style:normal;}
 <body>
 
 <canvas id="bg-canvas"></canvas>
+<canvas id="mesh-canvas"></canvas>
 <div class="scanlines"></div>
+
+<svg style="position:absolute;width:0;height:0;overflow:hidden;">
+  <defs>
+    <filter id="text-glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+</svg>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -187,6 +235,7 @@ footer em{color:var(--cyan);font-style:normal;}
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-hire-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
 </nav>
 
 <!-- HERO -->
@@ -197,9 +246,10 @@ footer em{color:var(--cyan);font-style:normal;}
       <span class="line1">MUJTABA</span>
       <span class="line2">HUSSAIN</span>
     </h1>
-    <p class="hero-sub">Building thoughtful software with Python, Java & C — exploring what code can do, one project at a time.</p>
+    <p class="hero-sub">Second-year CS student who gets genuinely excited about writing code that actually works. Still learning, always building — scroll down to see what I've been up to.</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn btn-primary">Get in Touch</a>
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
     </div>
   </div>
   <div class="hero-right">
@@ -245,21 +295,9 @@ footer em{color:var(--cyan);font-style:normal;}
       <h2 class="sec-title">Curious<br/><em>developer</em><br/>in the making</h2>
     </div>
     <div class="rev">
-      <p class="body-text">I'm <strong>Mujtaba Hussain</strong>, a Computer Science undergraduate at Methodist College of Engineering & Technology in Hyderabad. I'm passionate about writing clean, logical code and understanding how software shapes the world around us.</p>
-      <p class="body-text">My programming journey spans <strong>Python, Java, and C</strong> — languages that have taught me to think algorithmically, tackle problems from first principles, and appreciate both the elegance and precision that good code demands.</p>
-      <p class="body-text">When I'm not working on coursework or projects, I'm exploring new tools, sharpening my fundamentals, and building toward a future where I can contribute to meaningful technology.</p>
-      <div class="chips-label">Programming Languages</div>
-      <div class="chips">
-        <div class="lang-chip"><svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><linearGradient id="pyg1" x1="70.252" y1="1237.476" x2="170.659" y2="1151.089" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)"><stop offset="0" stop-color="#5A9FD4"/><stop offset="1" stop-color="#306998"/></linearGradient><linearGradient id="pyg2" x1="209.474" y1="1098.811" x2="173.62" y2="1149.537" gradientUnits="userSpaceOnUse" gradientTransform="matrix(.563 0 0 -.568 -29.215 707.817)"><stop offset="0" stop-color="#FFD43B"/><stop offset="1" stop-color="#FFE873"/></linearGradient><path fill="url(#pyg1)" d="M63.391 1.988c-4.222.02-8.252.379-11.8 1.007-10.45 1.846-12.346 5.71-12.346 12.837v9.411h24.693v3.137H29.977c-7.176 0-13.46 4.313-15.426 12.521-2.268 9.405-2.368 15.275 0 25.096 1.755 7.311 5.947 12.519 13.124 12.519h8.491V67.234c0-8.151 7.051-15.34 15.426-15.34h24.665c6.866 0 12.346-5.654 12.346-12.548V15.833c0-6.693-5.646-11.72-12.346-12.837-4.244-.706-8.645-1.027-12.866-1.008zM50.037 9.557c2.55 0 4.634 2.117 4.634 4.721 0 2.593-2.083 4.69-4.634 4.69-2.56 0-4.633-2.097-4.633-4.69-.001-2.604 2.073-4.721 4.633-4.721z"/><path fill="url(#pyg2)" d="M91.682 28.38v10.966c0 8.5-7.208 15.655-15.426 15.655H51.591c-6.756 0-12.346 5.783-12.346 12.549v23.515c0 6.691 5.818 10.628 12.346 12.547 7.816 2.297 15.312 2.713 24.665 0 6.216-1.801 12.346-5.423 12.346-12.547v-9.412H63.938v-3.138h37.012c7.176 0 9.852-5.005 12.348-12.519 2.578-7.735 2.467-15.174 0-25.096-1.774-7.145-5.161-12.521-12.348-12.521h-9.268zM77.809 87.927c2.561 0 4.634 2.097 4.634 4.692 0 2.602-2.074 4.719-4.634 4.719-2.55 0-4.633-2.117-4.633-4.719 0-2.595 2.083-4.692 4.633-4.692z"/></svg>Python</div>
-        <div class="lang-chip"><svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><path fill="#EA2D2E" d="M22.463 12.013c-1.12.03-2.163.624-2.658 1.898L.534 64l19.271 50.089c.629 1.623 2.127 2.073 3.347 1.818l108.505-50.962c1.586-.746 1.591-1.97 0-2.718L22.463 12.013z"/><path fill="#C7191A" d="M22.463 12.013L23.152 115.907l108.505-50.962c1.586-.746 1.591-1.97 0-2.718L22.463 12.013z"/><path fill="#fff" d="M22.83 28.68c.32-.024.64.01.948.1L95.225 64 23.778 99.22c-.97.51-2.087.12-2.55-1.07L2.13 64 21.228 28.85c.32-.12.64-.19.948-.21l.654.04zM41.989 55.862l-5.84 3.264 1.688 3.017 3.664-2.05.635 1.135-3.665 2.048 1.946 3.476 5.84-3.265-.764-1.365-4.272 2.388-1.26-2.25 3.981-2.224-.649-1.16-3.981 2.224-1.052-1.88 4.273-2.388-.544-.97zm8.042-4.495l-2.68 1.499 4.576 8.177 2.681-1.5-.76-1.357-1.112.622-3.05-5.452 1.111-.62-.766-1.369zm5.432-3.038l-2.68 1.499 4.576 8.177 2.68-1.5-.76-1.357-1.11.622-3.052-5.452 1.112-.62-.766-1.369zm9.165-1.77l-5.838 3.263 4.577 8.178 5.84-3.264-.764-1.365-4.272 2.387-1.26-2.25 3.981-2.225-.649-1.16-3.981 2.224-1.051-1.88 4.272-2.387-.855-1.521zm5.073 5.68l.64 1.144c.795-.483 1.55-.53 2.143-.005.378.34.54.817.381 1.286-.164.478-.634.745-1.338.71-.955-.045-1.934-.59-2.624-1.447l-.68 1.216c.897 1.053 2.145 1.694 3.42 1.752 1.217.058 2.22-.476 2.636-1.59.339-.93.073-1.903-.705-2.59-.502-.452-1.06-.645-1.74-.675.355-.4.498-.906.348-1.357-.245-.734-.99-1.042-1.931-.893-.789.129-1.532.572-2.102 1.07l.672 1.202c.44-.4.96-.726 1.53-.823.362-.06.658.042.768.373.096.29-.012.634-.42.627h-.697zm10.16-5.666l-5.84 3.264 4.577 8.177 5.839-3.264-.764-1.365-4.272 2.388-1.26-2.25 3.98-2.225-.648-1.16-3.98 2.224-1.052-1.88 4.272-2.387-.853-1.522z"/></svg>Java</div>
-        <div class="lang-chip"><svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><path fill="#03599C" d="M115.4 30.7L67.1 2.9c-.8-.5-1.9-.7-3.1-.7-1.2 0-2.3.3-3.1.7l-48 27.9c-1.7 1-2.9 3.5-2.9 5.4v55.7c0 1.1.2 2.3.9 3.4l-.2.1c.5.8 1.2 1.5 1.9 1.9l48.2 27.9c.8.5 1.9.7 3.1.7 1.2 0 2.3-.3 3.1-.7l48-27.9c1.7-1 2.9-3.5 2.9-5.4V36.1c.1-.9-.1-1.9-.4-2.7-.4-.8-1.1-1.9-2.1-2.7zm-2.4 63.5c0 .4-.3 1.1-.7 1.4L64 122.8l-48.3-27.9c-.4-.3-.7-1-.7-1.4V36.1c0-.5.3-1.1.7-1.4l48.4-27.9 48.3 27.9c.4.3.7.9.7 1.4v58.1z"/><path fill="#03599C" d="M85.3 76.1C81.1 83.5 73.1 88.5 64 88.5c-13.5 0-24.5-11-24.5-24.5s11-24.5 24.5-24.5c9.1 0 17.1 5 21.3 12.5l13-7.5c-5.8-10-16.5-16.8-28.6-17.2L64 20.4l-5.7 7-.4.5C44.8 29.3 33.2 41.5 33.2 56.5c0 0 0 .1-.1.1v.1c0 16.3 13.2 29.5 29.5 29.5 0 0 .1 0 .1.1 11.8 0 22.1-6.8 27.3-16.7l-4.7-2.5z"/><path fill="#fff" d="M85.3 76.1C81.1 83.5 73.1 88.5 64 88.5c-13.5 0-24.5-11-24.5-24.5s11-24.5 24.5-24.5c9.1 0 17.1 5 21.3 12.5l13-7.5c-5.8-10-16.5-16.8-28.6-17.2L64 20.4l-5.7 7-.4.5C44.8 29.3 33.2 41.5 33.2 56.5c0 0 0 .1-.1.1v.1c0 16.3 13.2 29.5 29.5 29.5 0 0 .1 0 .1.1 11.8 0 22.1-6.8 27.3-16.7l-4.7-2.5z"/><path fill="#03599C" d="M100.4 62.5h-7.1v-7.1h-7.1v7.1H79v7.1h7.1v7.1h7.1v-7.1h7.1z"/><path fill="#03599C" d="M122.9 62.5h-7.1v-7.1h-7.1v7.1h-7.1v7.1h7.1v7.1h7.1v-7.1h7.1z"/></svg>C</div>
-        <div class="lang-chip"><svg viewBox="0 0 452 520" xmlns="http://www.w3.org/2000/svg"><path d="M41 472l-33-370h434l-33 370-181 51z" fill="#e44d26"/><path d="M226 495l146-41 28-322H226z" fill="#f16529"/><path d="M226 208h-62l-4-45h66v-44H113l11 127h102zm0 -53h-66l4 44h62z" fill="#ebebeb"/><path d="M226 324l-96-27-7-73h-44l13 141 134 38zm0-73v-44h-62l5 44z" fill="#ebebeb"/><path d="M226 208v44h58l-6 68-52 15v46l97-27 1-16 12-130 1-15h-15zm0-97v44h120l1-15 2-29z" fill="#fff"/><path d="M226 251v44l51-14 6-68h-57zm0 73v46l95-27 8-73h-44l-5 41z" fill="#fff"/></svg>HTML</div>
-        <div class="lang-chip"><svg viewBox="0 0 452 520" xmlns="http://www.w3.org/2000/svg"><path d="M41 472l-33-370h434l-33 370-181 51z" fill="#1572b6"/><path d="M226 495l146-41 28-322H226z" fill="#33a9dc"/><path d="M115 151h111v44h-66l4 47h62v44h-62l5 59 57 16v47l-105-29-8-86H158l4 43 64 18v-31l-59-16-5-57z" fill="#fff"/><path d="M226 151h111v44h-67l3 47h64v44h-64l6 59-6 2v47l102-29 3-27 11-130 1-15H226z" fill="#ebebeb"/></svg>CSS</div>
-      </div>
-      <div class="chips-label">Skills</div>
-      <div class="chips"><div class="chip">Vibe Coding</div><div class="chip">Web Development</div><div class="chip">Front End Development</div><div class="chip">Python Development</div><div class="chip">V0</div><div class="chip">Gemini</div><div class="chip">PPT Making</div></div>
-      <div class="chips-label">Interests</div>
-      <div class="chips"><div class="chip">Video Editing</div><div class="chip">2D Animation</div><div class="chip">3D Animation</div><div class="chip">Blender</div><div class="chip">Krita</div></div>
+      <p class="body-text">I'm <strong>Mujtaba Hussain</strong> — a second-year CS student at Methodist College of Engineering & Technology, Hyderabad. I started with Python, picked up Java and C through coursework, and somewhere along the way got genuinely hooked on building for the web.</p>
+      <p class="body-text">Right now I'm learning <strong>HTML, CSS, and JavaScript</strong> hands-on — not just reading docs but actually shipping things. I've been getting into backend concepts too, and I've built a few real projects using vibe coding that I'm pretty proud of. They're not perfect, but they work, and I learned a lot making them. Scroll down to check them out.</p>
+      <p class="body-text">I'm the kind of person who'd rather build something broken and fix it than never start. Still figuring a lot out — but that's kind of the point.</p>
       <div class="edu-block">
         <div class="eyebrow" style="margin-top:2rem">Education</div>
         <div class="edu-item"><div class="edu-school">Methodist College of Engineering & Technology</div><div class="edu-deg">B.E. in Computer Science</div><div class="edu-yr">June 2024 — July 2028</div></div>
@@ -271,8 +309,35 @@ footer em{color:var(--cyan);font-style:normal;}
 </section>
 <div class="sec-divider"></div>
 
-<!-- CERTS -->
+<!-- PROJECTS -->
 <section id="projects">
+  <div class="rev">
+    <div class="eyebrow">Selected Work</div>
+    <h2 class="sec-title">My<br/><em>Projects</em></h2>
+  </div>
+  <div class="proj-grid">
+    <a class="proj-card rev" href="https://prepstream.netlify.app" target="_blank">
+      <div class="proj-num">01</div>
+      <div class="proj-title">PrepStream AI</div>
+      <div class="proj-desc">An AI-powered career prep web app I built solo. It helps users practice interviews, refine resumes, and get feedback — backed by a real AI model, user auth, and a payment flow I wired up myself.</div>
+      <div class="proj-tags"><span class="proj-tag">React</span><span class="proj-tag">Supabase</span><span class="proj-tag">Groq API</span><span class="proj-tag">Razorpay</span><span class="proj-tag">Tailwind</span></div>
+      <div class="proj-hint">↗ Visit site</div>
+    </a>
+    <a class="proj-card rev" href="https://codesensei1.netlify.app" target="_blank">
+      <div class="proj-num">02</div>
+      <div class="proj-title">CodeSensei</div>
+      <div class="proj-desc">An AI coding mentor with 12 unique mentor personas, each with their own personality and teaching style. Built for the Vector Global Hackathon 2026 with my team — features a Monaco code editor and real-time AI feedback.</div>
+      <div class="proj-tags"><span class="proj-tag">Groq / LLaMA</span><span class="proj-tag">Monaco Editor</span><span class="proj-tag">FastAPI</span><span class="proj-tag">Netlify</span></div>
+      <div class="proj-hint">↗ Visit site</div>
+    </a>
+    <a class="proj-card rev" href="https://nemora.tech" target="_blank">
+      <div class="proj-num">03</div>
+      <div class="proj-title">Nemora</div>
+      <div class="proj-desc">An AI prompt carbon optimizer built for the Google Solution Challenge 2026. Analyses the environmental cost of AI prompts and suggests leaner alternatives — built with Next.js, Three.js, and a Node/Express backend.</div>
+      <div class="proj-tags"><span class="proj-tag">Next.js</span><span class="proj-tag">Three.js</span><span class="proj-tag">Node.js</span><span class="proj-tag">Google Solution Challenge</span></div>
+      <div class="proj-hint">↗ Visit site</div>
+    </a>
+  </div>
   <div class="certs-section rev">
     <div class="certs-label">Certifications</div>
     <div class="cert-grid">
@@ -395,7 +460,7 @@ footer em{color:var(--cyan);font-style:normal;}
         <div><label class="flabel">Your Name</label><input type="text" name="name" class="finput" placeholder="Jane Smith" required/></div>
         <div><label class="flabel">Email Address</label><input type="email" name="email" class="finput" placeholder="jane@example.com" required/></div>
         <div><label class="flabel">Message</label><textarea name="message" class="ftextarea" placeholder="Tell me about your project or opportunity..." required></textarea></div>
-        <button type="button" class="btn-submit" id="btn-submit">Send Message →</button>
+        <button type="button" id="btn-submit" class="btn-submit">Send Message →</button>
       </form>
     </div>
   </div>
@@ -407,11 +472,56 @@ footer em{color:var(--cyan);font-style:normal;}
   <div>Hyderabad, India</div>
 </footer>
 
+<!-- OVERLAY -->
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  // ── PARTICLE BACKGROUND ──
+  // ── MESH GRADIENT BACKGROUND ──
+  var meshCanvas = document.getElementById('mesh-canvas');
+  var meshCtx = meshCanvas.getContext('2d');
+  var meshT = 0;
+
+  // Mesh blob config — colours matching the shader component
+  var blobs = [
+    { x:0.2, y:0.3, vx:0.0003, vy:0.0002, r:0.55, color:'rgba(6,182,212,ALPHA)'   },
+    { x:0.7, y:0.2, vx:-0.0002,vy:0.0004, r:0.5,  color:'rgba(249,115,22,ALPHA)'  },
+    { x:0.5, y:0.7, vx:0.0004, vy:-0.0003,r:0.6,  color:'rgba(109,40,217,ALPHA)'  },
+    { x:0.8, y:0.6, vx:-0.0003,vy:-0.0002,r:0.45, color:'rgba(8,145,178,ALPHA)'   },
+    { x:0.15,y:0.75,vx:0.0002, vy:0.0003, r:0.4,  color:'rgba(167,139,250,ALPHA)' },
+  ];
+
+  function resizeMesh() {
+    meshCanvas.width  = window.innerWidth;
+    meshCanvas.height = window.innerHeight;
+  }
+  resizeMesh();
+  window.addEventListener('resize', resizeMesh);
+
+  function drawMesh() {
+    meshT += 0.4;
+    meshCtx.clearRect(0, 0, meshCanvas.width, meshCanvas.height);
+    var W = meshCanvas.width, H = meshCanvas.height;
+
+    blobs.forEach(function(b) {
+      // gentle float using sin/cos so blobs never escape
+      var bx = (b.x + Math.sin(meshT * b.vx * 800 + b.r) * 0.18) * W;
+      var by = (b.y + Math.cos(meshT * b.vy * 800 + b.r) * 0.15) * H;
+      var rad = b.r * Math.max(W, H) * 0.7;
+      var alpha = 0.18 + 0.06 * Math.sin(meshT * 0.015 + b.r);
+      var grd = meshCtx.createRadialGradient(bx, by, 0, bx, by, rad);
+      grd.addColorStop(0, b.color.replace('ALPHA', String(alpha)));
+      grd.addColorStop(1, b.color.replace('ALPHA', '0'));
+      meshCtx.beginPath();
+      meshCtx.arc(bx, by, rad, 0, Math.PI * 2);
+      meshCtx.fillStyle = grd;
+      meshCtx.fill();
+    });
+    requestAnimationFrame(drawMesh);
+  }
+  drawMesh();
+
+  // ── PARTICLE NETWORK (kept, sits on top) ──
   var bgCanvas = document.getElementById('bg-canvas');
   var bgCtx = bgCanvas.getContext('2d');
   var particles = [];
@@ -425,51 +535,100 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', resizeBg);
   window.addEventListener('mousemove', function(e) { mouse.x = e.clientX; mouse.y = e.clientY; });
 
-  for (var i = 0; i < 90; i++) {
+  for (var i = 0; i < 70; i++) {
     particles.push({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      r: Math.random() * 1.5 + 0.5,
-      alpha: Math.random() * 0.5 + 0.1
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 1.2 + 0.3,
+      alpha: Math.random() * 0.35 + 0.05
     });
   }
 
   function drawBg() {
     bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-    // draw connections
     for (var i = 0; i < particles.length; i++) {
       var p = particles[i];
       p.x += p.vx; p.y += p.vy;
       if (p.x < 0 || p.x > bgCanvas.width) p.vx *= -1;
       if (p.y < 0 || p.y > bgCanvas.height) p.vy *= -1;
-      // mouse repel
       var dx = p.x - mouse.x, dy = p.y - mouse.y;
       var dist = Math.sqrt(dx*dx + dy*dy);
       if (dist < 100) { p.x += dx/dist*1.5; p.y += dy/dist*1.5; }
-      // draw dot
       bgCtx.beginPath();
       bgCtx.arc(p.x, p.y, p.r, 0, Math.PI*2);
       bgCtx.fillStyle = 'rgba(255,255,255,' + p.alpha + ')';
       bgCtx.fill();
-      // draw lines
       for (var j = i+1; j < particles.length; j++) {
         var q = particles[j];
         var d = Math.sqrt((p.x-q.x)*(p.x-q.x)+(p.y-q.y)*(p.y-q.y));
         if (d < 130) {
           bgCtx.beginPath();
-          bgCtx.moveTo(p.x, p.y);
-          bgCtx.lineTo(q.x, q.y);
-          bgCtx.strokeStyle = 'rgba(255,255,255,' + (0.08*(1-d/130)) + ')';
-          bgCtx.lineWidth = 0.5;
-          bgCtx.stroke();
+          bgCtx.moveTo(p.x, p.y); bgCtx.lineTo(q.x, q.y);
+          bgCtx.strokeStyle = 'rgba(255,255,255,' + (0.06*(1-d/130)) + ')';
+          bgCtx.lineWidth = 0.5; bgCtx.stroke();
         }
       }
     }
     requestAnimationFrame(drawBg);
   }
   drawBg();
+
+  // ── PULSING ORB ──
+  var orbCanvas = document.getElementById('orb-canvas');
+  if (orbCanvas) {
+    var orbCtx = orbCanvas.getContext('2d');
+    var orbT = 0;
+    var orbColors = ['#06b6d4','#0891b2','#f97316','#00FF88','#a78bfa','#ffffff'];
+    function drawOrb() {
+      orbT += 0.03;
+      orbCtx.clearRect(0, 0, 60, 60);
+      // dark base
+      orbCtx.beginPath(); orbCtx.arc(30, 30, 29, 0, Math.PI*2);
+      orbCtx.fillStyle = '#050810'; orbCtx.fill();
+      // rotating color spots
+      orbColors.forEach(function(col, idx) {
+        var angle = orbT + (idx / orbColors.length) * Math.PI * 2;
+        var pulse = 0.3 + 0.15 * Math.sin(orbT * 2 + idx);
+        var sx = 30 + Math.cos(angle) * 18;
+        var sy = 30 + Math.sin(angle) * 18;
+        var grd = orbCtx.createRadialGradient(sx, sy, 0, sx, sy, 14);
+        grd.addColorStop(0, col.replace(')', ',' + pulse + ')').replace('rgb','rgba').replace('#', 'rgba(').replace(/rgba\(([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2}),/, function(m,r,g,b){ return 'rgba('+parseInt(r,16)+','+parseInt(g,16)+','+parseInt(b,16)+','; }));
+        grd.addColorStop(1, 'rgba(0,0,0,0)');
+        orbCtx.beginPath(); orbCtx.arc(sx, sy, 14, 0, Math.PI*2);
+        orbCtx.fillStyle = grd; orbCtx.fill();
+      });
+      // inner glow ring
+      var ringGrd = orbCtx.createRadialGradient(30,30,18,30,30,28);
+      ringGrd.addColorStop(0,'rgba(0,0,0,0)');
+      ringGrd.addColorStop(0.8,'rgba(6,182,212,0.12)');
+      ringGrd.addColorStop(1,'rgba(6,182,212,0.3)');
+      orbCtx.beginPath(); orbCtx.arc(30, 30, 28, 0, Math.PI*2);
+      orbCtx.fillStyle = ringGrd; orbCtx.fill();
+      // clip to circle
+      orbCtx.save();
+      orbCtx.globalCompositeOperation = 'destination-in';
+      orbCtx.beginPath(); orbCtx.arc(30, 30, 29, 0, Math.PI*2);
+      orbCtx.fillStyle = '#fff'; orbCtx.fill();
+      orbCtx.restore();
+      requestAnimationFrame(drawOrb);
+    }
+    drawOrb();
+  }
+
+  // ── 3D TILT ON PROJECT CARDS ──
+  document.querySelectorAll('.proj-card').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = 'perspective(800px) rotateY(' + (x*12) + 'deg) rotateX(' + (-y*8) + 'deg) translateY(-5px)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = '';
+    });
+  });
 
   // ── NAV HIDE ON SCROLL ──
   var navbar = document.getElementById('navbar');
@@ -514,7 +673,7 @@ document.addEventListener('DOMContentLoaded', function() {
           btn.style.color = '';
           btn.disabled = false;
         }, 4000);
-      }, function(error) {
+      }, function() {
         btn.textContent = 'Failed — Try Again';
         btn.style.borderColor = '#ff4444';
         btn.style.color = '#ff4444';
@@ -526,7 +685,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 4000);
       });
   });
-
-
-});
-</script>
